@@ -1,0 +1,2981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan of Thumbs - Thumbnail Royalty</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10.0.4/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <style>
+        :root {
+            --primary: #3a53e2;
+            --primary-dark: #2c3fc0;
+            --primary-light: #6578ff;
+            --accent: #ff3e7f;
+            --accent-dark: #e02464;
+            --accent-light: #ff6b9e;
+            --dark: #151922;
+            --dark-secondary: #1e2430;
+            --gray-dark: #282f3e;
+            --gray-medium: #42495c;
+            --gray-light: #767e94;
+            --light: #f0f2f8;
+            --white: #ffffff;
+            --success: #00c896;
+            --warning: #ffcb47;
+            --error: #ff4757;
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--dark) 0%, var(--gray-dark) 100%);
+            --transition-fast: 0.3s ease;
+            --transition-medium: 0.5s ease;
+            --transition-slow: 0.8s ease;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
+            --shadow-primary: 0 8px 24px rgba(58,83,226,0.3);
+            --shadow-accent: 0 8px 24px rgba(255,62,127,0.3);
+            --border-radius-sm: 6px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 24px;
+            --border-radius-full: 9999px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-medium);
+            border-radius: var(--border-radius-full);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Custom cursor */
+        .cursor-dot,
+        .cursor-ring {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, opacity 0.2s;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            transition: transform 0.1s;
+        }
+
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .cursor-dot.active {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: var(--accent-light);
+            opacity: 0.8;
+        }
+
+        .cursor-ring.active {
+            width: 60px;
+            height: 60px;
+            border-color: var(--accent);
+            opacity: 0.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 1.25rem;
+        }
+
+        h3 {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        h5 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: var(--border-radius-md);
+            transition: all var(--transition-fast);
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(58,83,226,0.4);
+        }
+
+        .btn-accent {
+            background: var(--gradient-accent);
+            color: var(--white);
+            box-shadow: var(--shadow-accent);
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,62,127,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-lg {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-icon {
+            margin-left: 0.5rem;
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover .btn-icon {
+            transform: translateX(4px);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: all var(--transition-fast);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(21, 25, 34, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .navbar-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo img {
+            height: 40px;
+            margin-right: 0.75rem;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .navbar-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+
+        .navbar-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width var(--transition-fast);
+        }
+
+        .navbar-link:hover,
+        .navbar-link.active {
+            color: var(--white);
+        }
+
+        .navbar-link:hover::after,
+        .navbar-link.active::after {
+            width: 100%;
+        }
+
+        .navbar-cta {
+            margin-left: 1rem;
+        }
+
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--dark-secondary);
+            padding: 2rem;
+            z-index: 1100;
+            transition: right var(--transition-medium);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color var(--transition-fast);
+            padding: 0.5rem 0;
+        }
+
+        .mobile-menu-link:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-cta {
+            margin-top: 2rem;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-fast);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark);
+            overflow: hidden;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero-title::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+            animation: revealText 3s infinite alternate;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            color: var(--gray-light);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-stat-label {
+            font-size: 1rem;
+            color: var(--gray-light);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--gray-light);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-dark) 0%, transparent 70%);
+            opacity: 0.15;
+            filter: blur(80px);
+            z-index: 0;
+        }
+
+        .hero-glow:nth-child(1) {
+            top: -20%;
+            right: -10%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+        }
+
+        .hero-glow:nth-child(2) {
+            bottom: -10%;
+            left: -10%;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+        }
+
+        /* Category section */
+        .section {
+            padding: 7rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            display: inline-block;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-accent);
+            border-radius: var(--border-radius-full);
+        }
+
+        .section-subtitle {
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            text-align: center;
+            color: var(--gray-light);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .category-card {
+            position: relative;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            transition: all var(--transition-medium);
+            height: 240px;
+            cursor: pointer;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: 1;
+            transition: all var(--transition-medium);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-card:hover::before {
+            background: linear-gradient(to bottom, rgba(58, 83, 226, 0.3) 0%, rgba(21, 25, 34, 0.8) 100%);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all var(--transition-medium);
+        }
+
+        .category-card:hover .category-image {
+            transform: scale(1.1);
+        }
+
+        .category-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            z-index: 2;
+            transition: all var(--transition-medium);
+        }
+
+        .category-card:hover .category-content {
+            transform: translateY(-10px);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .category-description {
+            font-size: 0.9rem;
+            color: var(--light);
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all var(--transition-medium);
+        }
+
+        .category-card:hover .category-description {
+            max-height: 100px;
+            opacity: 1;
+            margin-top: 0.5rem;
+        }
+
+        .category-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: var(--white);
+            z-index: 2;
+            opacity: 0.7;
+            transition: all var(--transition-fast);
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.2);
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        /* Gallery section */
+        .gallery {
+            background-color: var(--dark-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 0;
+            max-width: 1280px;
+            margin: 0 auto 7rem;
+        }
+
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-title {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gallery-tabs {
+            display: flex;
+            gap: 1rem;
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .gallery-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-tab {
+            padding: 0.5rem 1.5rem;
+            background: var(--gray-dark);
+            color: var(--gray-light);
+            border-radius: var(--border-radius-full);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .gallery-tab.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .gallery-tab:hover:not(.active) {
+            background: var(--gray-medium);
+            color: var(--light);
+        }
+
+        .gallery-content {
+            position: relative;
+            min-height: 400px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 0 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            transition: all var(--transition-medium);
+            cursor: pointer;
+        }
+
+        .gallery-item::before {
+            content: '';
+            display: block;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+        }
+
+        .gallery-item.portrait::before {
+            padding-top: 177.78%; /* 9:16 aspect ratio */
+        }
+
+        .gallery-item-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all var(--transition-medium);
+        }
+
+        .gallery-item:hover .gallery-item-image {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(21, 25, 34, 0.8) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: all var(--transition-fast);
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            transform: translateY(10px);
+            transition: all var(--transition-medium);
+            transition-delay: 0.1s;
+        }
+
+        .gallery-item:hover .gallery-item-title {
+            transform: translateY(0);
+        }
+
+        .gallery-item-category {
+            font-size: 0.9rem;
+            color: var(--accent);
+            transform: translateY(10px);
+            transition: all var(--transition-medium);
+            transition-delay: 0.2s;
+        }
+
+        .gallery-item:hover .gallery-item-category {
+            transform: translateY(0);
+        }
+
+        .gallery-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Upload section */
+        .upload-section {
+            background-color: var(--gray-dark);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .upload-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .upload-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .upload-header h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .upload-header p {
+            color: var(--gray-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .upload-dropzone {
+            border: 2px dashed var(--gray-light);
+            border-radius: var(--border-radius-md);
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+            margin-bottom: 2rem;
+        }
+
+        .upload-dropzone:hover {
+            border-color: var(--primary);
+            background-color: rgba(58, 83, 226, 0.05);
+        }
+
+        .upload-dropzone.active {
+            border-color: var(--primary);
+            background-color: rgba(58, 83, 226, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--gray-light);
+            margin-bottom: 1rem;
+            transition: all var(--transition-fast);
+        }
+
+        .upload-dropzone:hover .upload-icon {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .upload-text {
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .upload-subtext {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+        }
+
+        .upload-form {
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--dark-secondary);
+            border: 1px solid var(--gray-medium);
+            border-radius: var(--border-radius-md);
+            color: var(--white);
+            transition: all var(--transition-fast);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(58, 83, 226, 0.2);
+        }
+
+        .form-control::placeholder {
+            color: var(--gray-light);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23767e94' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        .upload-preview {
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .preview-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .preview-image {
+            width: 100%;
+            border-radius: var(--border-radius-md);
+        }
+
+        .preview-remove {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 30px;
+            height: 30px;
+            background-color: var(--error);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .preview-remove:hover {
+            transform: scale(1.1);
+        }
+
+        /* Process section */
+        .process-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-card {
+            background-color: var(--dark-secondary);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: all var(--transition-medium);
+        }
+
+        .process-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .process-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .process-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--gray-dark);
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            line-height: 1;
+            transition: all var(--transition-medium);
+            opacity: 0.4;
+        }
+
+        .process-card:hover .process-number {
+            transform: scale(1.2);
+            color: var(--primary);
+            opacity: 0.2;
+        }
+
+        .process-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            transition: all var(--transition-medium);
+        }
+
+        .process-card:hover .process-icon {
+            transform: translateY(-5px);
+            color: var(--accent);
+        }
+
+        .process-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-description {
+            color: var(--gray-light);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Testimonials section */
+        .testimonials-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .testimonials-wrapper {
+            overflow: hidden;
+            padding: 3rem 0;
+        }
+
+        .testimonial-card {
+            background-color: var(--dark-secondary);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            height: 100%;
+            transition: all var(--transition-medium);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-content {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .testimonial-content::before {
+            content: '\201C';
+            font-size: 5rem;
+            position: absolute;
+            top: -2rem;
+            left: -1rem;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+
+        .testimonial-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-position {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+        }
+
+        .testimonial-rating {
+            display: flex;
+            margin-top: 0.5rem;
+        }
+
+        .testimonial-star {
+            color: var(--warning);
+            font-size: 1rem;
+            margin-right: 0.25rem;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all var(--transition-fast);
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .swiper-pagination-bullet {
+            background-color: var(--gray-light);
+            opacity: 0.5;
+            transition: all var(--transition-fast);
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var(--primary);
+            opacity: 1;
+            width: 20px;
+            border-radius: 5px;
+        }
+
+        /* CTA section */
+        .cta-section {
+            background-color: var(--primary);
+            margin-top: 7rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            max-width: 800px;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .cta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .cta-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--white) 0%, transparent 70%);
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .cta-glow:nth-child(1) {
+            top: -100px;
+            right: -100px;
+        }
+
+        .cta-glow:nth-child(2) {
+            bottom: -100px;
+            left: -100px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-secondary);
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-about {
+            color: var(--gray-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--gray-dark);
+            color: var(--light);
+            border-radius: 50%;
+            transition: all var(--transition-fast);
+        }
+
+        .footer-social-link:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-link {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-dark);
+        }
+
+        .footer-copyright {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal-link {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all var(--transition-fast);
+        }
+
+        .footer-legal-link:hover {
+            color: var(--primary);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-fast);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+        }
+
+        .modal-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background-color: var(--dark-secondary);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            z-index: 10;
+            transform: translateY(20px);
+            transition: all var(--transition-medium);
+            overflow: auto;
+        }
+
+        .modal.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 30px;
+            height: 30px;
+            background: var(--gray-dark);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            z-index: 20;
+        }
+
+        .modal-close:hover {
+            background-color: var(--error);
+            transform: rotate(90deg);
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: var(--border-radius-md);
+        }
+
+        .modal-title {
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .modal-category {
+            text-align: center;
+            color: var(--primary);
+            margin-top: 0.5rem;
+        }
+
+        /* Lightbox gallery */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-fast);
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 5px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            width: 30px;
+            height: 30px;
+            background: var(--error);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: var(--dark);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background-color: var(--primary);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Utility classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-5 { margin-top: 1.25rem; }
+        .mt-6 { margin-top: 1.5rem; }
+
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-5 { margin-bottom: 1.25rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* Animation keyframes */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        @keyframes revealText {
+            0% {
+                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+            }
+            100% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Media queries */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            h3 {
+                font-size: 2rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .hero-cta .btn {
+                width: 100%;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2.25rem;
+            }
+
+            h3 {
+                font-size: 1.75rem;
+            }
+
+            .navbar-links,
+            .navbar-cta {
+                display: none;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .hero-stat-number {
+                font-size: 2.5rem;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            .hero-stat-number {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 5rem 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">
+                <i class="fas fa-crown"></i>
+                <span>Sultan of Thumbs</span>
+            </a>
+            
+            <div class="navbar-links">
+                <a href="#home" class="navbar-link active">Home</a>
+                <a href="#categories" class="navbar-link">Categories</a>
+                <a href="#gallery" class="navbar-link">Gallery</a>
+                <a href="#process" class="navbar-link">How It Works</a>
+                <a href="#testimonials" class="navbar-link">Testimonials</a>
+            </div>
+            
+            <div class="navbar-cta">
+                <a href="#upload" class="btn btn-accent btn-sm">Start Upload</a>
+            </div>
+            
+            <button class="navbar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="#" class="navbar-logo">
+                <i class="fas fa-crown"></i>
+                <span>Sultan of Thumbs</span>
+            </a>
+            <button class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-menu-links">
+            <a href="#home" class="mobile-menu-link">Home</a>
+            <a href="#categories" class="mobile-menu-link">Categories</a>
+            <a href="#gallery" class="mobile-menu-link">Gallery</a>
+            <a href="#process" class="mobile-menu-link">How It Works</a>
+            <a href="#testimonials" class="mobile-menu-link">Testimonials</a>
+        </div>
+        
+        <div class="mobile-menu-cta">
+            <a href="#upload" class="btn btn-accent btn-lg w-full">Start Upload</a>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <!-- Hero section -->
+    <section id="home" class="hero">
+        <div class="hero-bg" id="hero-canvas"></div>
+        <div class="hero-particles" id="particles-js"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-glow"></div>
+        
+        <div class="hero-container" data-aos="fade-up">
+            <h1 class="hero-title" data-text="Thumbnail Mastery Redefined">Thumbnail Mastery Redefined</h1>
+            <p class="hero-subtitle">Transform your content with eye-catching thumbnails designed to maximize engagement, increase CTR, and skyrocket your channel growth.</p>
+            
+            <div class="hero-cta">
+                <a href="#upload" class="btn btn-accent btn-lg">
+                    Upload Your Content
+                    <i class="fas fa-arrow-right btn-icon"></i>
+                </a>
+                <a href="#gallery" class="btn btn-outline btn-lg">
+                    Explore Our Gallery
+                </a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="hero-stat" data-aos="fade-up" data-aos-delay="100">
+                    <div class="hero-stat-number" data-count="187">0</div>
+                    <div class="hero-stat-label">CTR Increase</div>
+                </div>
+                <div class="hero-stat" data-aos="fade-up" data-aos-delay="200">
+                    <div class="hero-stat-number" data-count="3492">0</div>
+                    <div class="hero-stat-label">Thumbnails Created</div>
+                </div>
+                <div class="hero-stat" data-aos="fade-up" data-aos-delay="300">
+                    <div class="hero-stat-number" data-count="957">0</div>
+                    <div class="hero-stat-label">Happy Creators</div>
+                </div>
+            </div>
+        </div>
+        
+        <a href="#categories" class="hero-scroll">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- Categories section -->
+    <section id="categories" class="section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Thumbnail Categories</h2>
+        </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Choose from our specialized thumbnail design categories, each optimized for maximum engagement in different content niches.
+        </p>
+        
+        <div class="category-grid">
+            <div class="category-card" data-aos="fade-up" data-aos-delay="100" data-category="gaming">
+                <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/gaming-bg.jpg" alt="Gaming Thumbnails" class="category-image">
+                <i class="fas fa-gamepad category-icon"></i>
+                <div class="category-content">
+                    <h3 class="category-title">Gaming</h3>
+                    <p class="category-description">Eye-catching thumbnails for gaming content that stand out in the feed and drive higher click-through rates.</p>
+                </div>
+            </div>
+            
+            <div class="category-card" data-aos="fade-up" data-aos-delay="200" data-category="finance">
+                <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/finance-bg.jpg" alt="Finance Thumbnails" class="category-image">
+                <i class="fas fa-chart-line category-icon"></i>
+                <div class="category-content">
+                    <h3 class="category-title">Finance</h3>
+                    <p class="category-description">Professional thumbnails for financial content that convey trust, authority, and urgency.</p>
+                </div>
+            </div>
+            
+            <div class="category-card" data-aos="fade-up" data-aos-delay="300" data-category="documentary">
+                <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/documentary-bg.jpg" alt="Documentary Thumbnails" class="category-image">
+                <i class="fas fa-film category-icon"></i>
+                <div class="category-content">
+                    <h3 class="category-title">Documentary</h3>
+                    <p class="category-description">Compelling thumbnails for documentary content that spark curiosity and drive engagement.</p>
+                </div>
+            </div>
+            
+            <div class="category-card" data-aos="fade-up" data-aos-delay="400" data-category="tech">
+                <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/tech-bg.jpg" alt="Tech Thumbnails" class="category-image">
+                <i class="fas fa-microchip category-icon"></i>
+                <div class="category-content">
+                    <h3 class="category-title">Tech</h3>
+                    <p class="category-description">Clean, modern thumbnails for tech content that showcase products and innovations effectively.</p>
+                </div>
+            </div>
+            
+            <div class="category-card" data-aos="fade-up" data-aos-delay="500" data-category="podcast">
+                <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/podcast-bg.jpg" alt="Podcast Thumbnails" class="category-image">
+                <i class="fas fa-microphone-alt category-icon"></i>
+                <div class="category-content">
+                    <h3 class="category-title">Podcast</h3>
+                    <p class="category-description">Professional podcast covers that help your show stand out on crowded platforms.</p>
+                </div>
+            </div>
+            
+            <div class="category-card" data-aos="fade-up" data-aos-delay="600" data-category="instagram">
+                <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/instagram-bg.jpg" alt="Instagram Covers" class="category-image">
+                <i class="fab fa-instagram category-icon"></i>
+                <div class="category-content">
+                    <h3 class="category-title">Instagram</h3>
+                    <p class="category-description">Scroll-stopping Instagram covers that elevate your social media presence and increase engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery section -->
+    <section id="gallery" class="section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Thumbnail Gallery</h2>
+        </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Browse our collection of high-performing thumbnails across different content categories.
+        </p>
+        
+        <div class="gallery" data-aos="fade-up" data-aos-delay="200">
+            <div class="gallery-header">
+                <h3 class="gallery-title">Featured Works</h3>
+            </div>
+            
+            <div class="gallery-tabs">
+                <div class="gallery-tab active" data-tab="all">All Categories</div>
+                <div class="gallery-tab" data-tab="gaming">Gaming</div>
+                <div class="gallery-tab" data-tab="finance">Finance</div>
+                <div class="gallery-tab" data-tab="documentary">Documentary</div>
+                <div class="gallery-tab" data-tab="tech">Tech</div>
+                <div class="gallery-tab" data-tab="podcast">Podcast</div>
+                <div class="gallery-tab" data-tab="instagram">Instagram</div>
+            </div>
+            
+            <div class="gallery-content">
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Gaming thumbnails (16:9) -->
+                    <div class="gallery-item" data-category="gaming">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/gaming1.jpg" alt="Gaming Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Epic Battle Royale</h4>
+                            <p class="gallery-item-category">Gaming</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="gaming">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/gaming2.jpg" alt="Gaming Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Minecraft Survival Challenge</h4>
+                            <p class="gallery-item-category">Gaming</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="gaming">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/gaming3.jpg" alt="Gaming Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">FPS Champion Strategy</h4>
+                            <p class="gallery-item-category">Gaming</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Finance thumbnails (16:9) -->
+                    <div class="gallery-item" data-category="finance">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/finance1.jpg" alt="Finance Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Stock Market Secrets</h4>
+                            <p class="gallery-item-category">Finance</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="finance">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/finance2.jpg" alt="Finance Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Crypto Investment Guide</h4>
+                            <p class="gallery-item-category">Finance</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="finance">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/finance3.jpg" alt="Finance Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Passive Income Strategies</h4>
+                            <p class="gallery-item-category">Finance</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Documentary thumbnails (16:9) -->
+                    <div class="gallery-item" data-category="documentary">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/documentary1.jpg" alt="Documentary Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Mysteries of the Deep</h4>
+                            <p class="gallery-item-category">Documentary</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="documentary">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/documentary2.jpg" alt="Documentary Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Ancient Civilizations</h4>
+                            <p class="gallery-item-category">Documentary</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="documentary">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/documentary3.jpg" alt="Documentary Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Wildlife Survival</h4>
+                            <p class="gallery-item-category">Documentary</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Tech thumbnails (16:9) -->
+                    <div class="gallery-item" data-category="tech">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/tech1.jpg" alt="Tech Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Ultimate Smartphone Review</h4>
+                            <p class="gallery-item-category">Tech</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="tech">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/tech2.jpg" alt="Tech Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">New GPU Performance</h4>
+                            <p class="gallery-item-category">Tech</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="tech">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/tech3.jpg" alt="Tech Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">AI Technology Explained</h4>
+                            <p class="gallery-item-category">Tech</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Podcast thumbnails (16:9) -->
+                    <div class="gallery-item" data-category="podcast">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/podcast1.jpg" alt="Podcast Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Success Mindset Podcast</h4>
+                            <p class="gallery-item-category">Podcast</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="podcast">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/podcast2.jpg" alt="Podcast Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">True Crime Stories</h4>
+                            <p class="gallery-item-category">Podcast</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="podcast">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/podcast3.jpg" alt="Podcast Thumbnail" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Tech Talk Weekly</h4>
+                            <p class="gallery-item-category">Podcast</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Instagram covers (9:16) -->
+                    <div class="gallery-item portrait" data-category="instagram">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/instagram1.jpg" alt="Instagram Cover" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Fashion Collection</h4>
+                            <p class="gallery-item-category">Instagram</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item portrait" data-category="instagram">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/instagram2.jpg" alt="Instagram Cover" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Fitness Challenge</h4>
+                            <p class="gallery-item-category">Instagram</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item portrait" data-category="instagram">
+                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/instagram3.jpg" alt="Instagram Cover" class="gallery-item-image">
+                        <div class="gallery-item-overlay">
+                            <h4 class="gallery-item-title">Food Stories</h4>
+                            <p class="gallery-item-category">Instagram</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-actions">
+                <a href="#upload" class="btn btn-primary">
+                    Upload Your Content
+                    <i class="fas fa-arrow-right btn-icon"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload section -->
+    <section id="upload" class="section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Upload Your Content</h2>
+        </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Share your content with us, and our designers will create eye-catching thumbnails tailored to your needs.
+        </p>
+        
+        <div class="upload-section" data-aos="fade-up" data-aos-delay="200">
+            <div class="upload-container">
+                <div class="upload-header">
+                    <h3>Let's Create Your Perfect Thumbnail</h3>
+                    <p>Upload your image and provide some details to help us create a stunning thumbnail that drives engagement.</p>
+                </div>
+                
+                <div class="upload-dropzone" id="dropzone">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <h4 class="upload-text">Drag & Drop Your Image Here</h4>
+                    <p class="upload-subtext">Or click to browse files (PNG, JPG, JPEG)</p>
+                    <input type="file" id="file-upload" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="upload-preview" id="preview-container">
+                    <h4 class="mb-3">Image Preview</h4>
+                    <div class="preview-container">
+                        <img src="" alt="Preview" id="preview-image" class="preview-image">
+                        <div class="preview-remove" id="remove-preview">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="upload-form" id="thumbnail-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category" class="form-label">Thumbnail Category</label>
+                        <select id="category" class="form-control form-select">
+                            <option value="" disabled selected>Select a category</option>
+                            <option value="gaming">Gaming (16:9)</option>
+                            <option value="finance">Finance (16:9)</option>
+                            <option value="documentary">Documentary (16:9)</option>
+                            <option value="tech">Tech (16:9)</option>
+                            <option value="podcast">Podcast (16:9)</option>
+                            <option value="instagram">Instagram (9:16)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="title" class="form-label">Thumbnail Title/Text</label>
+                        <input type="text" id="title" class="form-control" placeholder="Enter the text you want on your thumbnail">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description" class="form-label">Additional Details</label>
+                        <textarea id="description" class="form-control" placeholder="Describe your vision, color preferences, or specific requirements"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="deadline" class="form-label">Turnaround Time</label>
+                        <select id="deadline" class="form-control form-select">
+                            <option value="standard">Standard (3-5 days)</option>
+                            <option value="express">Express (24-48 hours)</option>
+                            <option value="urgent">Urgent (12 hours)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-accent btn-lg w-full">
+                        Submit Your Request
+                        <i class="fas fa-paper-plane btn-icon"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process section -->
+    <section id="process" class="section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Creative Process</h2>
+        </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Discover how we transform your content into high-performing thumbnails that drive engagement and increase click-through rates.
+        </p>
+        
+        <div class="process-container">
+            <div class="process-grid">
+                <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-number">01</div>
+                    <i class="fas fa-clipboard-list process-icon"></i>
+                    <h3 class="process-title">Content Analysis</h3>
+                    <p class="process-description">We analyze your content and target audience to understand what drives engagement in your niche and what type of thumbnails will perform best.</p>
+                </div>
+                
+                <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-number">02</div>
+                    <i class="fas fa-pencil-ruler process-icon"></i>
+                    <h3 class="process-title">Concept Design</h3>
+                    <p class="process-description">Our designers create custom thumbnail concepts that align with your brand while incorporating proven psychological triggers for higher CTR.</p>
+                </div>
+                
+                <div class="process-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-number">03</div>
+                    <i class="fas fa-paint-brush process-icon"></i>
+                    <h3 class="process-title">Professional Editing</h3>
+                    <p class="process-description">Using advanced editing techniques, we enhance visuals, optimize text placement, and ensure your thumbnail stands out in crowded feeds.</p>
+                </div>
+                
+                <div class="process-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-number">04</div>
+                    <i class="fas fa-check-circle process-icon"></i>
+                    <h3 class="process-title">Delivery & Feedback</h3>
+                    <p class="process-description">Receive your completed thumbnails in the perfect size and format for your platform, with unlimited revisions until you're completely satisfied.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials section -->
+    <section id="testimonials" class="section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Testimonials</h2>
+        </div>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Don't just take our word for it. Hear what content creators have to say about our thumbnail design services.
+        </p>
+        
+        <div class="testimonials-container" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonials-wrapper">
+                <div class="swiper-container" id="testimonials-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    <p class="testimonial-text">"Since switching to Sultan of Thumbs, my CTR has increased by 187%. Their thumbnails are eye-catching and perfectly capture the essence of my gaming content. Definitely worth the investment!"</p>
+                                    <div class="testimonial-author">
+                                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/testimonial1.jpg" alt="Author" class="testimonial-avatar">
+                                        <div class="testimonial-info">
+                                            <h4 class="testimonial-name">Alex Rodriguez</h4>
+                                            <p class="testimonial-position">Gaming Creator, 450K Subscribers</p>
+                                            <div class="testimonial-rating">
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    <p class="testimonial-text">"The team at Sultan of Thumbs understands the finance niche perfectly. They create thumbnails that convey trust and authority while still grabbing attention. My audience has grown 40% since I started using their services."</p>
+                                    <div class="testimonial-author">
+                                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/testimonial2.jpg" alt="Author" class="testimonial-avatar">
+                                        <div class="testimonial-info">
+                                            <h4 class="testimonial-name">Sarah Johnson</h4>
+                                            <p class="testimonial-position">Financial Educator, 280K Subscribers</p>
+                                            <div class="testimonial-rating">
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    <p class="testimonial-text">"I was struggling to get views on my documentary series until I found Sultan of Thumbs. Their thumbnails capture the mystery and intrigue of my content perfectly. Now my videos are getting the attention they deserve!"</p>
+                                    <div class="testimonial-author">
+                                        <img src="https://cdn.jsdelivr.net/gh/imagestorage/royalty-free@main/testimonial3.jpg" alt="Author" class="testimonial-avatar">
+                                        <div class="testimonial-info">
+                                            <h4 class="testimonial-name">Michael Torres</h4>
+                                            <p class="testimonial-position">Documentary Filmmaker, 125K Subscribers</p>
+                                            <div class="testimonial-rating">
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                                <i class="fas fa-star testimonial-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA section -->
+    <section class="cta-section">
+        <div class="cta-glow"></div>
+        <div class="cta-glow"></div>
+        <div class="cta-container">
+            <h2 class="cta-title" data-aos="fade-up">Ready to Elevate Your Content?</h2>
+            <p class="cta-description" data-aos="fade-up" data-aos-delay="100">Join hundreds of successful content creators who've boosted their engagement with our custom thumbnails.</p>
+            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="200">
+                <a href="#upload" class="btn btn-accent btn-lg">
+                    Get Started Today
+                    <i class="fas fa-arrow-right btn-icon"></i>
+                </a>
+                <a href="#gallery" class="btn btn-outline btn-lg">
+                    Explore Our Gallery
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-crown"></i>
+                        <span>Sultan of Thumbs</span>
+                    </a>
+                    <p class="footer-about">Elevating content creators through the art of thumbnail mastery. Join the dynasty of successful creators today.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/epicmotionedits?igsh=MWUwcm81bG5maXl1bQ==" class="footer-social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer-social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="footer-social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="footer-social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="#home" class="footer-link">Home</a>
+                        <a href="#categories" class="footer-link">Categories</a>
+                        <a href="#gallery" class="footer-link">Gallery</a>
+                        <a href="#process" class="footer-link">How It Works</a>
+                        <a href="#testimonials" class="footer-link">Testimonials</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Categories</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link" data-category="gaming">Gaming</a>
+                        <a href="#" class="footer-link" data-category="finance">Finance</a>
+                        <a href="#" class="footer-link" data-category="documentary">Documentary</a>
+                        <a href="#" class="footer-link" data-category="tech">Tech</a>
+                        <a href="#" class="footer-link" data-category="podcast">Podcast</a>
+                        <a href="#" class="footer-link" data-category="instagram">Instagram</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="mailto:akedits0005@gmail.com" class="footer-link">akedits0005@gmail.com</a>
+                        <a href="tel:+917798043078" class="footer-link">+91 7798043078</a>
+                        <a href="#" class="footer-link">Support Center</a>
+                        <a href="#" class="footer-link">FAQ</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2023 Sultan of Thumbs. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#" class="footer-legal-link">Privacy Policy</a>
+                    <a href="#" class="footer-legal-link">Terms of Service</a>
+                    <a href="#" class="footer-legal-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox for gallery images -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-container">
+            <img src="" alt="Lightbox Image" class="lightbox-image" id="lightbox-image">
+            <div class="lightbox-close" id="lightbox-close">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="lightbox-prev" id="lightbox-prev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="lightbox-next" id="lightbox-next">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // Custom cursor
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorRing = document.querySelector('.cursor-ring');
+            
+            document.addEventListener('mousemove', function(e) {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+                
+                cursorRing.style.left = e.clientX + 'px';
+                cursorRing.style.top = e.clientY + 'px';
+            });
+            
+            // Add active class on links and buttons
+            const interactiveElements = document.querySelectorAll('a, button, .category-card, .gallery-item');
+            
+            interactiveElements.forEach(function(element) {
+                element.addEventListener('mouseenter', function() {
+                    cursorDot.classList.add('active');
+                    cursorRing.classList.add('active');
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    cursorDot.classList.remove('active');
+                    cursorRing.classList.remove('active');
+                });
+            });
+            
+            // Hide default cursor in body
+            document.body.style.cursor = 'none';
+            
+            // Mobile menu toggle
+            const mobileMenuToggle = document.querySelector('.navbar-toggle');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.overlay');
+            
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            mobileMenuClose.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            overlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Mobile menu links
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+            
+            mobileMenuLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Initialize Three.js background
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('hero-canvas').appendChild(renderer.domElement);
+            
+            // Create particles
+            const particlesCount = 200;
+            const particles = new THREE.Group();
+            
+            // Create particle materials with different colors
+            const materials = [
+                new THREE.MeshBasicMaterial({ color: 0x3a53e2, transparent: true, opacity: 0.8 }),
+                new THREE.MeshBasicMaterial({ color: 0xff3e7f, transparent: true, opacity: 0.8 }),
+                new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 })
+            ];
+            
+            // Create different geometries for variety
+            const geometries = [
+                new THREE.SphereGeometry(0.1, 8, 8),
+                new THREE.BoxGeometry(0.15, 0.15, 0.15),
+                new THREE.TetrahedronGeometry(0.15)
+            ];
+            
+            for (let i = 0; i < particlesCount; i++) {
+                // Select random geometry and material
+                const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+                const material = materials[Math.floor(Math.random() * materials.length)];
+                
+                const particle = new THREE.Mesh(geometry, material);
+                
+                // Random position
+                particle.position.x = (Math.random() - 0.5) * 20;
+                particle.position.y = (Math.random() - 0.5) * 20;
+                particle.position.z = (Math.random() - 0.5) * 20;
+                
+                // Add data for animation
+                particle.userData = {
+                    speed: Math.random() * 0.02 + 0.01,
+                    rotationSpeed: Math.random() * 0.02 - 0.01,
+                    direction: new THREE.Vector3(
+                        Math.random() - 0.5,
+                        Math.random() - 0.5,
+                        Math.random() - 0.5
+                    ).normalize()
+                };
+                
+                particles.add(particle);
+            }
+            
+            scene.add(particles);
+            
+            // Position camera
+            camera.position.z = 5;
+            
+            // Animation function
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Rotate and move particles
+                particles.children.forEach(particle => {
+                    // Move particle
+                    particle.position.x += particle.userData.direction.x * particle.userData.speed;
+                    particle.position.y += particle.userData.direction.y * particle.userData.speed;
+                    particle.position.z += particle.userData.direction.z * particle.userData.speed;
+                    
+                    // Rotate particle
+                    particle.rotation.x += particle.userData.rotationSpeed;
+                    particle.rotation.y += particle.userData.rotationSpeed;
+                    
+                    // Check boundaries
+                    if (particle.position.length() > 10) {
+                        particle.position.setLength(10);
+                        particle.userData.direction.negate();
+                    }
+                });
+                
+                // Rotate entire particle system slowly
+                particles.rotation.y += 0.001;
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            // Initialize counter animation
+            const counters = document.querySelectorAll('.hero-stat-number');
+            
+            function startCounters() {
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    const duration = 1500; // ms
+                    const increment = target / (duration / 16); // 60fps
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    };
+                    
+                    updateCounter();
+                });
+            }
+            
+            // Start counters after a delay
+            setTimeout(startCounters, 1000);
+            
+            // Gallery tab functionality
+            const galleryTabs = document.querySelectorAll('.gallery-tab');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            galleryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    galleryTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    const category = tab.getAttribute('data-tab');
+                    
+                    // Show all items if "All Categories" is selected
+                    if (category === 'all') {
+                        galleryItems.forEach(item => {
+                            item.style.display = 'block';
+                        });
+                    } else {
+                        // Show only items from selected category
+                        galleryItems.forEach(item => {
+                            if (item.getAttribute('data-category') === category) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Gallery lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            
+            // Store current gallery item index
+            let currentIndex = 0;
+            let galleryImagesArray = [];
+            
+            // Click event for gallery items
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    // Update gallery images array based on currently visible items
+                    galleryImagesArray = Array.from(document.querySelectorAll('.gallery-item[style="display: block"]'));
+                    
+                    // Find index in filtered array
+                    currentIndex = galleryImagesArray.indexOf(item);
+                    
+                    const imageSrc = item.querySelector('img').getAttribute('src');
+                    lightboxImage.setAttribute('src', imageSrc);
+                    
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close lightbox
+            lightboxClose.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Click outside to close
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Previous image
+            lightboxPrev.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + galleryImagesArray.length) % galleryImagesArray.length;
+                const imageSrc = galleryImagesArray[currentIndex].querySelector('img').getAttribute('src');
+                lightboxImage.setAttribute('src', imageSrc);
+            });
+            
+            // Next image
+            lightboxNext.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % galleryImagesArray.length;
+                const imageSrc = galleryImagesArray[currentIndex].querySelector('img').getAttribute('src');
+                lightboxImage.setAttribute('src', imageSrc);
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                } else if (e.key === 'ArrowLeft') {
+                    lightboxPrev.click();
+                } else if (e.key === 'ArrowRight') {
+                    lightboxNext.click();
+                }
+            });
+            
+            // Category card click
+            const categoryCards = document.querySelectorAll('.category-card');
+            
+            categoryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const category = card.getAttribute('data-category');
+                    
+                    // Scroll to gallery section
+                    document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Wait for scroll to complete then switch to appropriate tab
+                    setTimeout(() => {
+                        const tab = document.querySelector(`.gallery-tab[data-tab="${category}"]`);
+                        if (tab) tab.click();
+                    }, 1000);
+                });
+            });
+            
+            // Footer category links
+            const footerCategoryLinks = document.querySelectorAll('.footer-link[data-category]');
+            
+            footerCategoryLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const category = link.getAttribute('data-category');
+                    
+                    // Scroll to gallery section
+                    document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Wait for scroll to complete then switch to appropriate tab
+                    setTimeout(() => {
+                        const tab = document.querySelector(`.gallery-tab[data-tab="${category}"]`);
+                        if (tab) tab.click();
+                    }, 1000);
+                });
+            });
+            
+            // File upload functionality
+            const dropzone = document.getElementById('dropzone');
+            const fileUpload = document.getElementById('file-upload');
+            const previewContainer = document.getElementById('preview-container');
+            const previewImage = document.getElementById('preview-image');
+            const removePreview = document.getElementById('remove-preview');
+            
+            // Click on dropzone to trigger file input
+            dropzone.addEventListener('click', () => {
+                fileUpload.click();
+            });
+            
+            // Handle file selection
+            fileUpload.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+            
+            // Drag and drop functionality
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, () => {
+                    dropzone.classList.add('active');
+                });
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, () => {
+                    dropzone.classList.remove('active');
+                });
+            });
+            
+            dropzone.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                handleFiles(files);
+            });
+            
+            function handleFiles(files) {
+                if (files.length === 0) return;
+                
+                const file = files[0];
+                
+                // Check if file is an image
+                if (!file.type.match('image.*')) {
+                    alert('Please upload an image file (PNG, JPG, JPEG)');
+                    return;
+                }
+                
+                // Create file reader to read file as data URL
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // Set preview image source
+                    previewImage.src = e.target.result;
+                    
+                    // Show preview container
+                    previewContainer.style.display = 'block';
+                    
+                    // Hide dropzone
+                    dropzone.style.display = 'none';
+                };
+                
+                reader.readAsDataURL(file);
+            }
+            
+            // Remove preview
+            removePreview.addEventListener('click', () => {
+                // Clear file input
+                fileUpload.value = '';
+                
+                // Hide preview container
+                previewContainer.style.display = 'none';
+                
+                // Show dropzone
+                dropzone.style.display = 'block';
+            });
+            
+            // Form submission
+            const thumbnailForm = document.getElementById('thumbnail-form');
+            
+            thumbnailForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // In a real implementation, you would send the form data to your server here
+                alert('Thank you for your submission! We will be in touch shortly.');
+                
+                // Reset form
+                thumbnailForm.reset();
+                removePreview.click();
+            });
+            
+            // Initialize testimonials slider
+            const testimonialsSlider = new Swiper('#testimonials-slider', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    },
+                },
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add GSAP animations
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Hero title animation
+            gsap.from('.hero-title', {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+            
+            gsap.from('.hero-subtitle', {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: 'power3.out',
+                delay: 0.3
+            });
+            
+            gsap.from('.hero-cta', {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: 'power3.out',
+                delay: 0.6
+            });
+            
+            // Animate sections on scroll
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                gsap.from(section.querySelector('.section-title'), {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%'
+                    },
+                    duration: 1,
+                    y: 50,
+                    opacity: 0,
+                    ease: 'power3.out'
+                });
+                
+                if (section.querySelector('.section-subtitle')) {
+                    gsap.from(section.querySelector('.section-subtitle'), {
+                        scrollTrigger: {
+                            trigger: section,
+                            start: 'top 80%'
+                        },
+                        duration: 1,
+                        y: 50,
+                        opacity: 0,
+                        ease: 'power3.out',
+                        delay: 0.2
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
