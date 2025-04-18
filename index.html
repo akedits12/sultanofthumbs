@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enhance your YouTube channel with eye-catching, high-converting thumbnail designs. Professional thumbnail editing service for content creators with 24-hour delivery.">
+    <meta name="keywords" content="thumbnail design, YouTube thumbnails, content creator, thumbnail editing, custom thumbnails">
+    <meta name="author" content="Sultan of Thumbs">
+    <meta property="og:title" content="Sultan of Thumbs - Premium Thumbnail Design Services">
+    <meta property="og:description" content="Enhance your YouTube channel with eye-catching, high-converting thumbnail designs. Professional thumbnail editing service with 24-hour delivery.">
+    <meta property="og:type" content="website">
+    <title>Sultan of Thumbs - Premium Thumbnail Design Services</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/svgs/solid/crown.svg" type="image/svg+xml">
+    
+    <!-- Tailwind CSS from jsdelivr -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #f43f5e;
+            --tertiary-color: #7c3aed;
+            --dark-color: #0f172a;
+            --darker-color: #060a17;
+            --light-color: #f8fafc;
+            --gray-color: #64748b;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--light-color);
+            background-color: var(--darker-color);
+            overflow-x: hidden;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-color);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--tertiary-color);
+        }
+        
+        /* Enhanced glowing text effect for Thumbnail Designs */
+        .enhanced-glow-text {
+            color: white; /* Ensure solid white color as base */
+            text-shadow: 0 0 10px rgba(79, 70, 229, 0.8), 
+                         0 0 15px rgba(79, 70, 229, 0.6), 
+                         0 0 20px rgba(79, 70, 229, 0.4),
+                         0 0 25px rgba(79, 70, 229, 0.3);
+            font-weight: 800; /* Extra bold font */
+            letter-spacing: 0.5px; /* Slightly increased letter spacing */
+        }
+        
+        /* Regular glow text */
+        .glow-text {
+            text-shadow: 0 0 8px rgba(79, 70, 229, 0.3), 0 0 12px rgba(79, 70, 229, 0.2);
+        }
+        
+        /* Gradient button */
+        .gradient-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-block;
+        }
+        
+        .gradient-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-secondary);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        .gradient-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+        
+        /* Section styles */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        /* Background grid lines */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: 50px 50px;
+            background-image:
+                linear-gradient(to right, rgba(79, 70, 229, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(79, 70, 229, 0.05) 1px, transparent 1px);
+            opacity: 0.4;
+        }
+        
+        /* Animated gradient border */
+        .gradient-border {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--primary-color), 
+                var(--tertiary-color), 
+                var(--secondary-color), 
+                var(--primary-color));
+            z-index: -1;
+            background-size: 400%;
+            animation: gradientBorder 6s linear infinite;
+            border-radius: 14px;
+        }
+        
+        @keyframes gradientBorder {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Floating elements animation */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Glowing dot animation */
+        .glow-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+            opacity: 0.7;
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+        
+        /* Gallery item hover effect */
+        .gallery-item {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: auto;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(6, 10, 23, 0.9), rgba(6, 10, 23, 0));
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-item-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Form element styles */
+        .form-input {
+            background-color: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            border-radius: 8px;
+            color: white;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.3);
+            outline: none;
+        }
+        
+        /* Price badge */
+        .price-badge {
+            background: var(--gradient-secondary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        /* Statistic card */
+        .stat-card {
+            background-color: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(79, 70, 229, 0.5);
+        }
+        
+        /* Animated background */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at center, rgba(79, 70, 229, 0.1) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Custom blurry circles for hero section */
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+        
+        .blob-1 {
+            background: var(--primary-color);
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+        }
+        
+        .blob-2 {
+            background: var(--secondary-color);
+            width: 250px;
+            height: 250px;
+            bottom: -50px;
+            right: -100px;
+        }
+        
+        .blob-3 {
+            background: var(--tertiary-color);
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            right: 10%;
+        }
+        
+        /* Crown Logo */
+        .crown-logo {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            margin-right: 8px;
+            color: #ffc107;
+            filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.5));
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Stats Counter */
+        .stat-number {
+            display: inline-block;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-number {
+            transform: scale(1.1);
+        }
+        
+        /* PDF optimizations */
+        @media print {
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 20px;
+                padding: 40px 0;
+            }
+            
+            .gallery-item {
+                page-break-inside: avoid;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .gradient-border::before {
+                animation: none;
+            }
+            
+            .floating {
+                animation: none;
+            }
+        }
+        
+        /* New features */
+        .feature-item {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover .feature-icon {
+            transform: scale(1.1);
+        }
+        
+        /* Process steps */
+        .process-step {
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -30px;
+            width: 60px;
+            height: 2px;
+            background: var(--primary-color);
+            opacity: 0.3;
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .process-step::after {
+                display: none;
+            }
+        }
+        
+        /* Testimonial cards */
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Blog post card */
+        .blog-card {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .blog-card img {
+            transition: all 0.5s ease;
+        }
+        
+        .blog-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* CTAs */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(79, 70, 229, 0.8), rgba(124, 58, 237, 0.8));
+            z-index: -1;
+        }
+        
+        /* FAQ section */
+        .faq-item {
+            border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        /* Category badges */
+        .category-badge {
+            background-color: rgba(79, 70, 229, 0.1);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .category-badge:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .hero-blob {
+                opacity: 0.2;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header Section -->
+    <header id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Background elements -->
+        <div class="animated-bg"></div>
+        <div class="grid-bg"></div>
+        
+        <!-- Decorative blobs -->
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
+        <div class="hero-blob blob-3"></div>
+        
+        <!-- Decorative dots -->
+        <div class="glow-dot" style="top: 20%; left: 10%;"></div>
+        <div class="glow-dot" style="top: 70%; left: 15%;"></div>
+        <div class="glow-dot" style="top: 30%; right: 15%;"></div>
+        <div class="glow-dot" style="top: 80%; right: 10%;"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="logo-container mb-8 text-center">
+                <svg class="crown-logo" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 1L15.5 5L20 6L20 10L15.5 15L17 20L12 17.5L7 20L8.5 15L4 10L4 6L8.5 5L12 1Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color text-3xl font-bold">Sultan of Thumbs</span>
+            </div>
+            
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up">
+                    Premium 
+                    <span class="enhanced-glow-text">
+                        Thumbnail Designs
+                    </span>
+                    <br>for Content Creators
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-300 mb-10" data-aos="fade-up" data-aos-delay="100">
+                    Elevate your content with eye-catching thumbnails designed to boost engagement and click-through rates.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#portfolio" class="gradient-btn">View Our Work</a>
+                    <a href="#pricing" class="bg-transparent border-2 border-primary-color text-primary-color hover:bg-primary-color hover:text-white transition-all duration-300 py-3 px-6 rounded-lg font-medium">
+                        See Pricing
+                    </a>
+                </div>
+                
+                <div class="w-full max-w-2xl mx-auto mt-10 gradient-border" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://i.ibb.co/XcZrJJr/documentary-thumb-19.jpg" alt="Premium Thumbnail Example" class="w-full h-auto rounded-lg">
+                </div>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12">
+                <div class="stat-card text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2 stat-number">500+</div>
+                    <div class="text-gray-400 text-sm md:text-base">Thumbnails Delivered</div>
+                </div>
+                
+                <div class="stat-card text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2 stat-number">8</div>
+                    <div class="text-gray-400 text-sm md:text-base">Content Categories</div>
+                </div>
+                
+                <div class="stat-card text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2 stat-number">150+</div>
+                    <div class="text-gray-400 text-sm md:text-base">Happy Clients</div>
+                </div>
+                
+                <div class="stat-card text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2 stat-number">42%</div>
+                    <div class="text-gray-400 text-sm md:text-base">Average CTR Increase</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section class="section relative bg-dark-color">
+        <div class="grid-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color">
+                        Our Thumbnail Services
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    We specialize in creating high-converting thumbnails for various content niches
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-darker-color p-8 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary-color hover:shadow-lg hover:shadow-primary-color/20 feature-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-full bg-primary-color/20 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-fire text-2xl text-primary-color"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Viral Style Thumbnails</h3>
+                    <p class="text-gray-400">Eye-catching thumbnails designed with proven viral patterns that grab attention and drive clicks.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-darker-color p-8 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary-color hover:shadow-lg hover:shadow-primary-color/20 feature-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-full bg-primary-color/20 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-chart-line text-2xl text-primary-color"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Finance & Business</h3>
+                    <p class="text-gray-400">Professional thumbnails for finance channels that establish authority and drive engagement.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-darker-color p-8 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary-color hover:shadow-lg hover:shadow-primary-color/20 feature-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-full bg-primary-color/20 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-gamepad text-2xl text-primary-color"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Gaming & Entertainment</h3>
+                    <p class="text-gray-400">Dynamic and energetic thumbnails that capture the excitement of your gaming content.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-darker-color p-8 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary-color hover:shadow-lg hover:shadow-primary-color/20 feature-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-full bg-primary-color/20 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-graduation-cap text-2xl text-primary-color"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Education & Tutorial</h3>
+                    <p class="text-gray-400">Clear, informative thumbnails that preview your educational content and attract learners.</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-darker-color p-8 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary-color hover:shadow-lg hover:shadow-primary-color/20 feature-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-full bg-primary-color/20 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-mobile-alt text-2xl text-primary-color"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Tech & Reviews</h3>
+                    <p class="text-gray-400">Sleek, modern thumbnails that showcase your tech products and review content effectively.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-darker-color p-8 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary-color hover:shadow-lg hover:shadow-primary-color/20 feature-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-full bg-primary-color/20 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-camera text-2xl text-primary-color"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Lifestyle & Vlog</h3>
+                    <p class="text-gray-400">Vibrant, personality-focused thumbnails that connect with your audience on a personal level.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section relative bg-darker-color">
+        <div class="grid-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color">
+                        Why Choose Our Thumbnails?
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Our thumbnails are strategically designed to drive more views and engagement
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="gradient-border">
+                        <img src="https://i.ibb.co/zTz5KG0X/finance-thumb-16.jpg" alt="Thumbnail Results" class="w-full h-auto rounded-lg">
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary-color/20 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                                <i class="fas fa-eye text-xl text-primary-color"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Eye-Catching Design</h3>
+                                <p class="text-gray-400">Our thumbnails use psychology-backed design principles to grab attention in crowded feeds.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary-color/20 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                                <i class="fas fa-chart-line text-xl text-primary-color"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Increased CTR</h3>
+                                <p class="text-gray-400">Our clients see an average 42% increase in click-through rate after switching to our thumbnails.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary-color/20 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                                <i class="fas fa-bolt text-xl text-primary-color"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Fast Turnaround</h3>
+                                <p class="text-gray-400">24-hour delivery on standard orders, and rush options available when you need it even faster.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary-color/20 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                                <i class="fas fa-paint-brush text-xl text-primary-color"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Unlimited Revisions</h3>
+                                <p class="text-gray-400">We work with you until you're completely satisfied with the final design.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section relative bg-dark-color">
+        <div class="grid-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color">
+                        Our Thumbnail Gallery
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Browse our collection of premium thumbnails designed to make your content stand out
+                </p>
+            </div>
+            
+            <!-- Portfolio categories -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12" data-aos="fade-up" data-aos-delay="200">
+                <button class="py-2 px-5 rounded-full bg-primary-color text-white" data-filter="all">
+                    All Categories
+                </button>
+                <button class="py-2 px-5 rounded-full bg-dark-color hover:bg-primary-color/20 text-gray-300 hover:text-white transition-colors duration-300" data-filter="finance">
+                    Finance
+                </button>
+                <button class="py-2 px-5 rounded-full bg-dark-color hover:bg-primary-color/20 text-gray-300 hover:text-white transition-colors duration-300" data-filter="documentary">
+                    Documentary
+                </button>
+                <button class="py-2 px-5 rounded-full bg-dark-color hover:bg-primary-color/20 text-gray-300 hover:text-white transition-colors duration-300" data-filter="tech">
+                    Tech
+                </button>
+                <button class="py-2 px-5 rounded-full bg-dark-color hover:bg-primary-color/20 text-gray-300 hover:text-white transition-colors duration-300" data-filter="instagram">
+                    Instagram
+                </button>
+            </div>
+            
+            <!-- Portfolio grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Thumbnail 1 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="tech" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://i.ibb.co/84K4ZXpQ/tech-thumb-9.jpg" alt="Tech Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Tech</span>
+                            <span class="price-badge">$15</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Tech Review Thumbnail</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 2 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="finance" data-aos="fade-up" data-aos-delay="150">
+                    <img src="https://i.ibb.co/zTz5KG0X/finance-thumb-16.jpg" alt="Finance Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Finance</span>
+                            <span class="price-badge">$12</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Finance Strategy Thumbnail</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 3 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="tech" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://i.ibb.co/xqsrPDmd/tech-thumb-10.jpg" alt="Tech Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Tech</span>
+                            <span class="price-badge">$18</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Tech Product Thumbnail</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 4 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="documentary" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://i.ibb.co/XcZrJJr/documentary-thumb-19.jpg" alt="Documentary Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Documentary</span>
+                            <span class="price-badge">$14</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Documentary Style Thumbnail</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 5 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="tech" data-aos="fade-up" data-aos-delay="150">
+                    <img src="https://i.ibb.co/k2gnhMrP/tech-thumb-16.jpg" alt="Tech Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Tech</span>
+                            <span class="price-badge">$16</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Tech Comparison Thumbnail</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 6 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="documentary" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://i.ibb.co/bg3H0Tc9/documentary-thumb-18.jpg" alt="Documentary Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Documentary</span>
+                            <span class="price-badge">$15</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Historical Documentary Thumbnail</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 7 - Instagram Cover (9:16) -->
+                <div class="gallery-item relative cursor-pointer" style="aspect-ratio: 9/16;" data-category="instagram" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://i.ibb.co/v4tr4WFm/instagram-cover-thumb-11.jpg" alt="Instagram Cover" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Instagram</span>
+                            <span class="price-badge">$17</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Instagram Story Cover</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 8 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="tech" data-aos="fade-up" data-aos-delay="150">
+                    <img src="https://i.ibb.co/cS3TkGnS/tech-thumb-4.jpg" alt="Tech Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Tech</span>
+                            <span class="price-badge">$20</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Tech News Thumbnail</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 9 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="tech" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://i.ibb.co/gp9QR8q/tech-thumb-12.jpg" alt="Tech Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Tech</span>
+                            <span class="price-badge">$18</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Tech Review Thumbnail</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 10 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="tech" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://i.ibb.co/v4335rPL/tech-thumb-11.jpg" alt="Tech Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Tech</span>
+                            <span class="price-badge">$15</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">AI Tech Thumbnail</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 11 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="tech" data-aos="fade-up" data-aos-delay="150">
+                    <img src="https://i.ibb.co/rNv7SfG/tech-thumb-7.jpg" alt="Tech Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Tech</span>
+                            <span class="price-badge">$16</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Future Tech Thumbnail</h3>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail 12 -->
+                <div class="gallery-item relative aspect-video cursor-pointer" data-category="tech" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://i.ibb.co/SwfDxzbz/tech-thumb-5.jpg" alt="Tech Thumbnail" class="w-full h-full object-cover">
+                    <div class="gallery-item-info">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs uppercase tracking-wider bg-primary-color/30 px-2 py-1 rounded">Tech</span>
+                            <span class="price-badge">$19</span>
+                        </div>
+                        <h3 class="text-lg font-semibold">Tech Analysis Thumbnail</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#pricing" class="gradient-btn">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section relative bg-darker-color">
+        <div class="grid-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color">
+                        How It Works
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Our simple 4-step process to deliver stunning thumbnails for your content
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-dark-color p-8 rounded-xl border border-gray-800 h-full">
+                        <div class="w-14 h-14 mb-6 rounded-full bg-primary-color/20 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-primary-color">1</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Submit Request</h3>
+                        <p class="text-gray-400">Fill out our simple order form with your requirements and content details.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-dark-color p-8 rounded-xl border border-gray-800 h-full">
+                        <div class="w-14 h-14 mb-6 rounded-full bg-primary-color/20 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-primary-color">2</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Design Phase</h3>
+                        <p class="text-gray-400">Our designers create your custom thumbnail based on your requirements.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-dark-color p-8 rounded-xl border border-gray-800 h-full">
+                        <div class="w-14 h-14 mb-6 rounded-full bg-primary-color/20 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-primary-color">3</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Review & Feedback</h3>
+                        <p class="text-gray-400">Review the draft and request any revisions until you're completely satisfied.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-dark-color p-8 rounded-xl border border-gray-800 h-full">
+                        <div class="w-14 h-14 mb-6 rounded-full bg-primary-color/20 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-primary-color">4</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Final Delivery</h3>
+                        <p class="text-gray-400">Receive your finalized thumbnail files in all required formats and resolutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section relative bg-dark-color">
+        <div class="grid-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color">
+                        Real Results
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    See the difference our thumbnails make for content creators
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Case Study 1 -->
+                <div class="bg-darker-color rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/4g3yL1YH/finance-thumb-14.png" alt="Before After Comparison" class="w-full h-auto">
+                        <div class="absolute top-4 left-4 bg-primary-color/80 text-white text-xs font-semibold px-3 py-1 rounded-full">CASE STUDY</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Finance Channel Transformation</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 flex">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm text-gray-400">Click-through Rate</span>
+                                <span class="text-sm font-semibold">+47%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-primary-color h-2 rounded-full" style="width: 47%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm text-gray-400">New Subscribers</span>
+                                <span class="text-sm font-semibold">+32%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-primary-color h-2 rounded-full" style="width: 32%"></div>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 mb-4">"Sultan of Thumbs completely transformed my finance channel. Their thumbnails increased my CTR by 47% and brought in hundreds of new subscribers!"</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-primary-color/30 rounded-full flex items-center justify-center">
+                                <span class="text-primary-color font-semibold">MR</span>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="font-medium">Michael Rodriguez</h4>
+                                <p class="text-sm text-gray-400">Finance Creator, 125K subscribers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Case Study 2 -->
+                <div class="bg-darker-color rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/8DDxpgrx/tech-thumb-6.jpg" alt="Before After Comparison" class="w-full h-auto">
+                        <div class="absolute top-4 left-4 bg-primary-color/80 text-white text-xs font-semibold px-3 py-1 rounded-full">CASE STUDY</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Education Content Growth</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 flex">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm text-gray-400">Average Views</span>
+                                <span class="text-sm font-semibold">+52%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-primary-color h-2 rounded-full" style="width: 52%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm text-gray-400">Audience Retention</span>
+                                <span class="text-sm font-semibold">+18%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-primary-color h-2 rounded-full" style="width: 18%"></div>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 mb-4">"I was struggling to get views on my education channel until I started using Sultan of Thumbs. Their thumbnails are eye-catching and have dramatically increased my views."</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-primary-color/30 rounded-full flex items-center justify-center">
+                                <span class="text-primary-color font-semibold">SP</span>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="font-medium">Sarah Parker</h4>
+                                <p class="text-sm text-gray-400">Education Creator, 78K subscribers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section relative bg-darker-color">
+        <div class="grid-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color">
+                        Simple, Transparent Pricing
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Choose the perfect thumbnail package for your content needs
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Basic Plan -->
+                <div class="bg-dark-color rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary-color/10 border border-gray-800 hover:border-primary-color/50" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-8">
+                        <h3 class="text-xl font-semibold mb-4">Basic Package</h3>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">$12</span>
+                            <span class="text-gray-400 ml-2">/ thumbnail</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>High-quality design</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>2 revisions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>48-hour delivery</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>YouTube optimized resolution</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block text-center py-3 px-4 bg-dark-color text-white hover:bg-primary-color/20 border border-primary-color rounded-lg transition-all duration-300">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Standard Plan -->
+                <div class="bg-dark-color rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary-color/10 border-2 border-primary-color transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-primary-color text-white text-center py-2 text-sm font-semibold">
+                        MOST POPULAR
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-semibold mb-4">Pro Package</h3>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">$18</span>
+                            <span class="text-gray-400 ml-2">/ thumbnail</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Premium design</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Unlimited revisions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>24-hour delivery</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>High resolution</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Source files included</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block text-center py-3 px-4 gradient-btn rounded-lg w-full">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="bg-dark-color rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary-color/10 border border-gray-800 hover:border-primary-color/50" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-8">
+                        <h3 class="text-xl font-semibold mb-4">Premium Package</h3>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">$24</span>
+                            <span class="text-gray-400 ml-2">/ thumbnail</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Ultra-premium design</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Unlimited revisions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Express 12-hour delivery</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Ultra-high resolution</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Source files included</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block text-center py-3 px-4 bg-dark-color text-white hover:bg-primary-color/20 border border-primary-color rounded-lg transition-all duration-300">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Package Deals -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-dark-color p-8 rounded-xl border border-gray-800">
+                    <h3 class="text-xl font-semibold mb-4">Bulk Discount Packages</h3>
+                    <ul class="space-y-4 mb-6">
+                        <li class="flex justify-between items-center pb-2 border-b border-gray-800">
+                            <span>5 Thumbnails</span>
+                            <span class="font-semibold">10% OFF</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-2 border-b border-gray-800">
+                            <span>10 Thumbnails</span>
+                            <span class="font-semibold">15% OFF</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-2 border-b border-gray-800">
+                            <span>20+ Thumbnails</span>
+                            <span class="font-semibold">20% OFF</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="inline-block py-2 px-6 gradient-btn rounded-lg">Get Bulk Quote</a>
+                </div>
+                
+                <div class="bg-dark-color p-8 rounded-xl border border-gray-800">
+                    <h3 class="text-xl font-semibold mb-4">Monthly Retainer</h3>
+                    <p class="text-gray-400 mb-6">Perfect for consistent content creators who need regular thumbnails.</p>
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-medium">Starter: 4 Thumbnails/month</span>
+                                <span class="font-semibold">$60</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="bg-primary-color h-1 rounded-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-medium">Growth: 8 Thumbnails/month</span>
+                                <span class="font-semibold">$120</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="bg-primary-color h-1 rounded-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-medium">Pro: 16 Thumbnails/month</span>
+                                <span class="font-semibold">$210</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="bg-primary-color h-1 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="inline-block py-2 px-6 gradient-btn rounded-lg">Get Monthly Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section relative bg-dark-color">
+        <div class="grid-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color">
+                        What Our Clients Say
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Hear from content creators who have transformed their channels with our thumbnails
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-darker-color p-6 rounded-xl border border-gray-800 testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">"These thumbnails are game-changers! My gaming channel was struggling until I found Sultan of Thumbs. Now my CTR is up by 62% and I'm getting way more subscribers!"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-primary-color/30 rounded-full flex items-center justify-center">
+                            <span class="text-primary-color font-semibold">AK</span>
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="font-medium">Alex King</h4>
+                            <p class="text-sm text-gray-400">Gaming Creator, 250K subscribers</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-darker-color p-6 rounded-xl border border-gray-800 testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">"I've tried many thumbnail designers, but Sultan of Thumbs consistently delivers the best quality. They understand what drives clicks in the finance niche and it shows in my results."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-primary-color/30 rounded-full flex items-center justify-center">
+                            <span class="text-primary-color font-semibold">JS</span>
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="font-medium">Jessica Smith</h4>
+                            <p class="text-sm text-gray-400">Finance Creator, 180K subscribers</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-darker-color p-6 rounded-xl border border-gray-800 testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">"The quality and turnaround time are exceptional. I needed urgent thumbnails for a product launch, and they delivered stunning designs in just 8 hours. Incredible service!"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-primary-color/30 rounded-full flex items-center justify-center">
+                            <span class="text-primary-color font-semibold">DP</span>
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="font-medium">Daniel Peterson</h4>
+                            <p class="text-sm text-gray-400">Tech Reviewer, 320K subscribers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section relative bg-darker-color">
+        <div class="grid-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color">
+                        Frequently Asked Questions
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Everything you need to know about our thumbnail services
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item py-4 cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">How long does it take to receive my thumbnail?</h3>
+                        <svg class="w-5 h-5 text-primary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="faq-answer pt-3">
+                        <p class="text-gray-400">Our standard delivery time is 24-48 hours, depending on your package. The Pro package includes 24-hour delivery, while our Premium package offers express 12-hour delivery. If you need it even faster, contact us for rush options.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item py-4 cursor-pointer" data-aos="fade-up" data-aos-delay="150">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">What information do you need to create my thumbnail?</h3>
+                        <svg class="w-5 h-5 text-primary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="faq-answer pt-3">
+                        <p class="text-gray-400">We'll need your video title, a brief description of the content, any specific elements or text you want included, your branding guidelines (if applicable), and any reference images you'd like us to use. The more details you provide, the better we can match your vision.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item py-4 cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">How many revisions can I request?</h3>
+                        <svg class="w-5 h-5 text-primary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="faq-answer pt-3">
+                        <p class="text-gray-400">The Basic package includes 2 revisions, while both the Pro and Premium packages include unlimited revisions. We're committed to ensuring you're completely satisfied with the final result.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item py-4 cursor-pointer" data-aos="fade-up" data-aos-delay="250">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">What file formats will I receive?</h3>
+                        <svg class="w-5 h-5 text-primary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="faq-answer pt-3">
+                        <p class="text-gray-400">You'll receive your thumbnail in high-resolution JPG and PNG formats, optimized for YouTube (1280x720px). Pro and Premium packages also include editable source files (PSD or AI) so you can make future adjustments.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item py-4 cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">Do you offer refunds if I'm not satisfied?</h3>
+                        <svg class="w-5 h-5 text-primary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="faq-answer pt-3">
+                        <p class="text-gray-400">We offer a satisfaction guarantee. If you're not happy with the design despite revision attempts, we'll issue a full refund. However, we're confident in our work and will do everything to ensure you're satisfied with the results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-20 relative">
+        <div class="cta-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">
+                    Ready to Boost Your Click-Through Rates?
+                </h2>
+                <p class="text-xl text-white mb-8 opacity-90" data-aos="fade-up" data-aos-delay="100">
+                    Join hundreds of content creators who have transformed their channels with our thumbnail designs
+                </p>
+                <a href="#contact" class="gradient-btn text-lg py-4 px-8" data-aos="fade-up" data-aos-delay="200">
+                    Start Creating Better Thumbnails
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section relative bg-darker-color">
+        <div class="grid-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color">
+                        Let's Create Amazing Thumbnails
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Fill out the form below to get started with our premium thumbnail service
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-dark-color p-8 rounded-xl border border-gray-800" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-semibold mb-6">Send Us a Message</h3>
+                    
+                    <form id="contact-form" action="https://formsubmit.co/akedits0005@gmail.com" method="POST">
+                        <!-- FormSubmit configuration fields -->
+                        <input type="hidden" name="_subject" value="New Thumbnail Design Request">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://akedits12.github.io/sultanofthumbs/thank-you.html">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="text" name="_honey" style="display:none">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Your Name</label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="channel" class="block text-sm font-medium text-gray-400 mb-1">YouTube Channel (optional)</label>
+                            <input type="text" id="channel" name="channel" class="form-input" placeholder="Your YouTube channel URL">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="service" class="block text-sm font-medium text-gray-400 mb-1">Service Type</label>
+                            <select id="service" name="service" class="form-input">
+                                <option value="basic">Basic Package</option>
+                                <option value="pro" selected>Pro Package</option>
+                                <option value="premium">Premium Package</option>
+                                <option value="bulk">Bulk Order (5+ thumbnails)</option>
+                                <option value="monthly">Monthly Retainer</option>
+                                <option value="custom">Custom Request</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-400 mb-1">Project Details</label>
+                            <textarea id="message" name="message" rows="5" class="form-input" placeholder="Tell us about your thumbnail needs, content type, style preferences, etc."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="gradient-btn w-full">
+                            <i class="fas fa-paper-plane mr-2"></i> Submit Request
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-dark-color p-8 rounded-xl border border-gray-800 mb-8">
+                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary-color/20 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope text-primary-color"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Email Address</h4>
+                                    <p class="text-gray-400">akedits0005@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary-color/20 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                                    <i class="fas fa-phone text-primary-color"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Phone Number</h4>
+                                    <p class="text-gray-400">+91 7798043078</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary-color/20 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                                    <i class="fas fa-clock text-primary-color"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Working Hours</h4>
+                                    <p class="text-gray-400">Monday - Friday: 9am - 6pm<br>Weekend: 10am - 4pm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-dark-color p-8 rounded-xl border border-gray-800">
+                        <h3 class="text-xl font-semibold mb-4">Why Our Clients Love Us</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <p class="text-gray-400">Fast 24-hour turnaround on standard orders</p>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <p class="text-gray-400">Proven 42% average increase in click-through rates</p>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <p class="text-gray-400">Unlimited revisions until you're completely satisfied</p>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-primary-color mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <p class="text-gray-400">Specialized designs for different content niches</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-color py-12 relative">
+        <div class="grid-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="logo-container mb-6 md:mb-0">
+                    <svg class="crown-logo" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1L15.5 5L20 6L20 10L15.5 15L17 20L12 17.5L7 20L8.5 15L4 10L4 6L8.5 5L12 1Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-color to-tertiary-color text-2xl font-bold">Sultan of Thumbs</span>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="https://www.instagram.com/epicmotionedits/" target="_blank" class="w-10 h-10 rounded-full bg-primary-color/20 flex items-center justify-center hover:bg-primary-color transition-colors duration-300">
+                        <i class="fab fa-instagram text-white"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-primary-color/20 flex items-center justify-center hover:bg-primary-color transition-colors duration-300">
+                        <i class="fab fa-youtube text-white"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-primary-color/20 flex items-center justify-center hover:bg-primary-color transition-colors duration-300">
+                        <i class="fab fa-twitter text-white"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-primary-color/20 flex items-center justify-center hover:bg-primary-color transition-colors duration-300">
+                        <i class="fab fa-facebook-f text-white"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">About Us</h4>
+                    <p class="text-gray-400 mb-4">We're a team of dedicated thumbnail designers passionate about helping content creators boost their engagement and views through compelling visual thumbnails.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#portfolio" class="hover:text-primary-color transition-colors duration-300">Finance Thumbnails</a></li>
+                        <li><a href="#portfolio" class="hover:text-primary-color transition-colors duration-300">Tech Thumbnails</a></li>
+                        <li><a href="#portfolio" class="hover:text-primary-color transition-colors duration-300">Documentary Thumbnails</a></li>
+                        <li><a href="#portfolio" class="hover:text-primary-color transition-colors duration-300">Instagram Covers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-primary-color transition-colors duration-300">Home</a></li>
+                        <li><a href="#portfolio" class="hover:text-primary-color transition-colors duration-300">Portfolio</a></li>
+                        <li><a href="#pricing" class="hover:text-primary-color transition-colors duration-300">Pricing</a></li>
+                        <li><a href="#contact" class="hover:text-primary-color transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-primary-color mr-3 mt-1"></i>
+                            <span>akedits0005@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-primary-color mr-3 mt-1"></i>
+                            <span>+91 7798043078</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500">&copy; 2025 Sultan of Thumbs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // FAQ toggles
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Form submission tracking
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    // FormSubmit handles form submission, we just need to track it
+                    console.log('Form submitted successfully');
+                    
+                    // Track form submission (if you want to add Google Analytics later)
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'form_submission', {
+                            'event_category': 'Contact',
+                            'event_label': 'Thumbnail Request',
+                            'value': 1
+                        });
+                    }
+                });
+            }
+            
+            // Filter gallery items
+            const filterButtons = document.querySelectorAll('[data-filter]');
+            const galleryItems = document.querySelectorAll('[data-category]');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary-color', 'text-white');
+                        btn.classList.add('bg-dark-color', 'text-gray-300', 'hover:bg-primary-color/20', 'hover:text-white');
+                    });
+                    
+                    // Add active class to clicked button
+                    button.classList.remove('bg-dark-color', 'text-gray-300', 'hover:bg-primary-color/20', 'hover:text-white');
+                    button.classList.add('bg-primary-color', 'text-white');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
